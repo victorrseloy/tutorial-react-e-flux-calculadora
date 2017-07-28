@@ -1,5 +1,6 @@
 import EventEmmiter from 'events'
-
+import Action from './Constants'
+import {appDispatcher} from './AppDispatcher'
 const CHANGE = 'change'
 
 let _store = {
@@ -60,7 +61,35 @@ class CalculadoraStore extends  EventEmmiter{
     getState(){
         return _store
     }
+
+    handleActions(action){
+        switch(action.type){
+            case Action.ATUALIZA_VISOR:
+                this.setValorDoDisplay(action.value);
+                break;
+            case Action.ENTRAR_COM_DIGITOS_DECIMAIS:
+                this.setModoDeEntradaDecimal(action.value);
+                break;
+            case Action.GUARDA_VALOR:
+                this.setResultadoUltimaOperacao(action.value);
+                break;
+            case Action.LIMPA_OPERACAO:
+                this.setOperacaoAritmetica(undefined);
+                break;
+            case Action.LIMPA_VISOR:
+                this.setValorDoDisplay('')
+                break;
+            case Action.LIMPA_VISOR_NA_PROXIMA_OPERACAO:
+                this.setLimparVisor(action.value);
+                break;
+            case Action.SETA_OPERACAO:
+                this.setOperacaoAritmetica(action.value);
+                break;
+        }
+
+
+    }
 }
 
 export let calculadoraStore = new CalculadoraStore()
-window.calculadoraStore = calculadoraStore
+appDispatcher.register(calculadoraStore.handleActions.bind(calculadoraStore))
