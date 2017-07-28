@@ -36,10 +36,13 @@ export default class Botao extends React.Component{
             case '=':
                 Action.executarOperacaoMatematica(this.props.valor,this.props.operacaoAnterior
                     ,this.props.valorVisor,this.props.valorNaMemoria)
+                break;
             case '.':
                 Action.setModoDeEntradaDecimal(true)
+                break;
             case 'c':
                 Action.resetar();
+                break;
         }
     }
 }

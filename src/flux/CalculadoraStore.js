@@ -10,7 +10,7 @@ let _store = {
     operacaoAritmetica: undefined,
     modoDeEntradaDecimal: false,
 }
-
+window.dbg = _store;
 class CalculadoraStore extends  EventEmmiter{
 
     getValorDoDisplay(){

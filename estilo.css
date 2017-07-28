@@ -9,6 +9,7 @@ body{
     font-size: 31px;
     margin: 0;
     margin-right: 5px;
+    min-height: 37px;
 }
 
 #calculadora{
